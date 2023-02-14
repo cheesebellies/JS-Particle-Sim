@@ -117,21 +117,19 @@ class Particle {
             return;
         }
         var along, along2, mult;
-        for (let i = 0; i < 1; i++) {
-            particleList.forEach( (particle) => {
-                if (particle !== this) {
-                    if (getLen(this.pos, particle.pos) < this.weight * 10) {
-                        mult = (this.weight * 10) - getLen(this.pos, particle.pos);
-                        along = subtract(this.pos, particle.pos);
-                        along = divide(along, getLen([0, 0], along));
-                        along = multiply(along, mult);
-                        along2 = subtract([0, 0], along);
-                        particle.pos = add(particle.pos, along2);
-                        this.pos = add(this.pos, along);
-                    }
+        particleList.forEach( (particle) => {
+            if (particle !== this) {
+                if (getLen(this.pos, particle.pos) < this.weight * 10) {
+                    mult = (this.weight * 10) - getLen(this.pos, particle.pos);
+                    along = subtract(this.pos, particle.pos);
+                    along = divide(along, getLen([0, 0], along));
+                    along = multiply(along, mult);
+                    along2 = subtract([0, 0], along);
+                    particle.pos = add(particle.pos, along2);
+                    this.pos = add(this.pos, along);
                 }
-            });
-        }
+            }
+        });
         this.getWalls();
     }
 
