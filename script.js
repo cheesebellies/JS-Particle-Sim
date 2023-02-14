@@ -113,23 +113,34 @@ class Particle {
     }
 
     getCollisions() {
+        //Some particles can be static, ignore this
         if (this.isStatic){
             return;
         }
+        //along and along2 being the vectors along which to move colliding particles, mult being how far
         var along, along2, mult;
-        particleList.forEach( (particle) => {
+        //loop through all particles in the scene
+        particleList.forEach( (particle) {
             if (particle !== this) {
+                //getLen gets the distance between two points, this function checks to see if two particles are colliding
                 if (getLen(this.pos, particle.pos) < this.weight * 10) {
+                    //Get how far intersecting the particles are
                     mult = (this.weight * 10) - getLen(this.pos, particle.pos);
+                    //Get a directional vector from one particle to the next
                     along = subtract(this.pos, particle.pos);
+                    //Normalize the vector
                     along = divide(along, getLen([0, 0], along));
+                    //Set the magnitude to mult
                     along = multiply(along, mult);
+                    //Get the inverse of where the first particle is moving to
                     along2 = subtract([0, 0], along);
+                    //add the vectors to both the particles
                     particle.pos = add(particle.pos, along2);
                     this.pos = add(this.pos, along);
                 }
             }
         });
+        //Used to get collisions with the boundaries of the website
         this.getWalls();
     }
 
