@@ -190,14 +190,14 @@ function start() {
     }
     function updateParticles() {
         
-        particleList.forEach(function(particle) {8
+        particleList.forEach(function(particle) {
             particle.updatePos();
             particle.resistance(0.01);
             div = document.getElementById(particle.div);
             div.style.left = particle.pos[0] + "px";
             div.style.top = particle.pos[1] + "px";
         })
-        for(let i = 0;i < 32; i++) {
+        for(let i = 0;i < 8; i++) {
             doCollisions();
         }
     }
