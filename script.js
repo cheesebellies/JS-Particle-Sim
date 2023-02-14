@@ -120,7 +120,7 @@ class Particle {
         //along and along2 being the vectors along which to move colliding particles, mult being how far
         var along, along2, mult;
         //loop through all particles in the scene
-        particleList.forEach( (particle) {
+        particleList.forEach( (particle) => {
             if (particle !== this) {
                 //getLen gets the distance between two points, this function checks to see if two particles are colliding
                 if (getLen(this.pos, particle.pos) < this.weight * 10) {
